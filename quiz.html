@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="quiz.css">
+<title>Quiz</title>
+</head>
+<body>
+<div class="quiz-container">
+
+    <div class="question" id="question1">
+        <h2>Question 1</h2>
+        <p>Quelle est la capitale de Irak ?</p>
+        <input type="text" id="answer1" placeholder="Votre réponse">
+        <button onclick="checkAnswer(1)">Vérifier</button>
+        <p style="color: black;" id="info1"></p>
+    </div>
+
+    <div class="question" id="question2" style="display: none;">
+        <h2>Question 2</h2>
+        <p>Quelle est la capitale de Jordanie</p>
+        <input type="text" id="answer2" placeholder="Votre réponse">
+        <button onclick="checkAnswer(2)">Vérifier</button>
+        <p style="color: black;" id="info2"></p>
+    </div>
+
+    <div class="question" id="question3" style="display: none;">
+        <h2>Question 3</h2>
+        <p>Quelle est la capitale de l'Allemagne</p>
+        <input type="text" id="answer3" placeholder="Votre réponse">
+        <button onclick="checkAnswer(3)">Vérifier</button>
+        <p style="color: black;" id="info3"></p>
+    </div>
+
+
+
+
+    <div class="navbar">
+        <a href="index.html" class="nav-link">Calc</a>
+        <a href="quiz.html" class="nav-link">Quiz</a>
+        <a href="info.html" class="nav-link">Infos</a>
+    </div>
+
+</div>
+
+
+
+
+<script>
+    const info1 = document.getElementById("info1");
+const info2 = document.getElementById("info2");
+const info3 = document.getElementById("info3");
+
+function checkAnswer(questionNumber) {
+    const answerElement = document.getElementById(`answer${questionNumber}`);
+    const answer = answerElement.value.trim().toLowerCase();
+
+    if (questionNumber === 1 && answer === "bagdad") {
+        info1.textContent = "C'est Juste !";
+        info1.style.color = "green";
+        info1.style.fontWeight = "bold";
+        setTimeout(function() {
+            document.getElementById("question2").style.display = "block";
+            document.getElementById("question1").style.display = "none";
+            info1.textContent = ""; // Clear the info message
+        }, 1000); // Wait for 1 second
+    } else if (questionNumber === 2 && answer === "amman") {
+        info2.textContent = "C'est Juste !";
+        info2.style.color = "green";
+        setTimeout(function() {
+            document.getElementById("question3").style.display = "block";
+            document.getElementById("question2").style.display = "none";
+            info2.textContent = ""; // Clear the info message
+        }, 1000); // Wait for 1 second
+    } else if (questionNumber === 3 && answer === "berlin") {
+        info3.textContent = "Félicitations, vous avez terminé le quiz !";
+        info3.style.color = "green";
+    } else {
+        info1.textContent = "C'est faux";
+        info1.style.color = "red";
+        info2.textContent = "C'est faux";
+        info2.style.color = "red";
+        info3.textContent = "C'est faux";
+        info3.style.color = "red";
+    }
+
+    answerElement.value = "";
+}
+
+</script>
+</body>
+</html>
